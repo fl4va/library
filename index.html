@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">Library</div>
+        <div class="content">
+            <button id="bytina">Create</button>
+            <form method="get" id="fyrma" style="display: none;">
+        
+                <legend></legend>
+                <label for="name">Name</label>
+                    <input type="text" name="book" id="name" class="input">
+                <label for="author">Author</label>
+                    <input type="text" name="author" id="author" class="input">
+                <label for="numPages">Number Pages</label>
+                    <input type="number" name="numPages" id="numPages" min="0" class="input">
+                <div class="status">
+                    <label for="checkbox">Have You Read it</label>
+                        <input type="checkbox" name="checkbox" id="checkbox">
+                </div>
+                <label for="rate">Rate on 10</label>
+                    <input type="number" min="0" max="10" name="rate" id="rate" class="input">
+        
+                <input type="button" name="button" id="button" value="Submit">
+                </form>
+                <div id="main"></div>
+            </div>
+            <div class="footer">Copyright</div>
+    </div>
+        
+</body>
+</html>

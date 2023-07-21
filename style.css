@@ -1,0 +1,71 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body{
+    height: 100%;
+}
+
+:root{
+    --headerHight : calc() 
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.header{
+    min-height: 2rem;
+}
+
+
+
+
+form{
+    display: grid;
+    position: relative;
+}
+
+input{
+    width: 300px;
+}
+label{
+    padding: 5px;
+}
+
+#button input[type='button']{
+    position: absolute;
+    top: 210px;
+    left: 347px;
+    width: 80px;
+    padding: 8px;
+}
+
+#main{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding-top: 20px;
+}
+
+#main > div{
+    display: grid;
+    background-color: rgb(58, 121, 121);
+    padding: 10px;
+    white-space: pre-line;
+    line-height: 20px;
+    text-align: center;
+}
+
+#bytine,
+#remove{
+    padding: 10px;
+    width: 70px;
+}
+
+#status{
+
+}
