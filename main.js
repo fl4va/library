@@ -1,141 +1,120 @@
-const main = document.querySelector('#main')
-const myLibrary = []
+const container = document.querySelector('.container')
+const main = document.querySelector('.main')
+const readButton = document.querySelector('.yes')
+const addBook = document.querySelector('.addBook')
+const form = document.querySelector('.form')
+const exit = document.querySelector('.exit')
+let myLibrary = []
 
-class Book {
+function Book (title, author, pages, rate) {
 
-    constructor(name, author, numPages, checkbox, rate) {
-        this.n = name,
-        this.a = author,
-        this.np = numPages,
-        this.s = checkbox,
-        this.r = rate;
-    }
+    this.t = title,
+    this.a = author,
+    this.p = pages,
+    this.r = rate
 
-    toggleCheckBox() {       
-      const checkbox = document.querySelector('#checkbox');
-        this.toggleCheckBox.checked = !this.toggleCheckBox.checked
-        if (this.toggleCheckBox.checked) {
-            return `Yes`
-        } else {
-            return `No`
-        }
-    }
-
-    theFinalBook () {
-        return `
-        The Name : ${this.n}
-        The Author : ${this.a}
-        Number of Pages : ${this.np}
-        Read : ${this.toggleCheckBox()}
-        Rate : ${this.r} / 10`
-    };
 }
 
+function addBookToLibrary (e) {
 
-function createBook () { 
+    e.preventDefault()
 
-    const name = document.querySelector('#name').value;
-    const author = document.querySelector('#author').value;
-    const numPages = document.querySelector('#numPages').value;
-    const checkbox = document.querySelector('#checkbox');
-    const rate = document.querySelector('#rate').value;
+    // DOM
+    const tit = document.querySelector('#title').value
+    const aut = document.querySelector('#author').value
+    const pag = document.querySelector('#pages').value
+    const rat = document.querySelector('#rate').value
+    
+   
+    // CREATE NEW OBJECT (BOOK) & PUSH TO LIBRARY
+    const newBook = new Book(tit, aut, pag, rat)
+    myLibrary.push(newBook)
 
-    // check if book exists
+    // CHECK READ BUTTON 
+    const newButton = document.createElement('button')
+    newButton.className = 'yes'
+    newButton.textContent = readButton.value
+    newButton.addEventListener('click', () => {
+        newButton.classList.toggle('yes')
+        if (newButton.classList.contains('yes')) {
 
-    const bookExist = myLibrary.find((book) => {
-        return book.n === name  && book.a === author 
+            newButton.textContent = 'Read'
+
+            newButton.setAttribute('style', 'background: rgb(47, 218, 84) ')  
+            return
+            
+        }else {
+            newButton.textContent = 'Not Read'
+
+            newButton.setAttribute('style', 'background: rgb(255, 57, 31)')    
+            return 
+        }
     })
 
-    // add to myLibrary
+    //CHECK IF INPUT EMPTY
+    if (tit !== '' && aut !== '' && pag !== '' ){
 
-    if ( bookExist ) {
-        // const msg = document.querySelector('legend')
-        // msg.textContent = 'this book is already exists'
-        alert('this book is already exists in your library')
-        return '';
-    }
+        // CREATE CARD FOR BOOK
+        const div = document.createElement('div')
+        div.textContent = ` Title  :  ${tit}
+                            Author :  ${aut}
+                            Pages  :  ${pag}
+                            Rating :  ${rat} /10`
 
-    const book = new Book(name, author, numPages, checkbox, rate)
-    myLibrary.push(book)
-
-    const bindFun = book.theFinalBook.bind(book)
-    return bindFun()
-    
+        // CREATE DELETE BUTTON
+        const del = document.createElement('button')
+        del.textContent = 'Delete'
+        del.addEventListener('click', () => {
+            myLibrary.splice(-1, 1)
+            main.removeChild(div)
+        })
+        
+        // APPEND CHILDS
+        div.appendChild(newButton);
+        div.appendChild(del);
+        main.appendChild(div);
+    } else  alert('Please Fill Out The Form')
+   clearInputs()
+   form.setAttribute('style', 'display: none')
 }
 
-const sub = document.querySelector('#button')   
-sub.addEventListener('click', () => {
+function subbmit() {
+    const sub = document.querySelector('#sub')
+    sub.addEventListener('click', addBookToLibrary)
     
-    const name = document.querySelector('#name').value;
-    const author = document.querySelector('#author').value;
-    const checkbox = document.querySelector('#checkbox');
+}subbmit()
+
+function checkRead () {
     
-    const remove = document.createElement('button')
-    const changeStatus = document.createElement('input')
+        readButton.addEventListener('click', () => {
+            readButton.classList.toggle('yes')
 
-    // validation check
+            if (readButton.classList.contains('yes')) {
+                readButton.value = 'Read'
+                
+                    readButton.setAttribute('style', 'background: rgb(47, 218, 84) ')  
+                return
+            }else {
+                readButton.value= 'Not Read' 
+                readButton.setAttribute('style', 'background: rgb(255, 57, 31)')  
+                return
+            }
 
-    if (name.trim() === '' || author.trim() === '') {
-        alert('Please enter the book name and author.');
-        return;
-    }
-    
-
-    let content = createBook()
-    if (content != '') {
-        
-        const div = document.createElement('div')
-        div.innerHTML = content
-
-        // remove button
-        remove.textContent = 'Remove'
-        remove.addEventListener('click', () => {
-        main.removeChild(div)
-        removeBookFromLibrary(name, author)
         })
-
-        // change read status
-
-        changeStatus.setAttribute('type', 'checkbox')
-        changeStatus.textContent = 'Have You Read it?'
-        div.appendChild(changeStatus)
-        
-        
-        div.appendChild(remove)
-        main.appendChild(div)
-        console.log(myLibrary)
-
-        fyrma.setAttribute('style', 'display: none')
-        bytina.setAttribute('style', 'display: grid')
-        remove.setAttribute('style', 'display: flex')
-        clearInputs()
-    }
-})
-
-
-
-function removeBookFromLibrary(name, author) {
-    const index = myLibrary.findIndex((book) => {
-      return book.n === name && book.a === author;
-    });
-  
-    if (index !== -1) {
-      myLibrary.splice(index, 1);
-    }
-  }
-
-const fyrma = document.querySelector('#fyrma')
-const bytina = document.querySelector('#bytina')
-bytina.addEventListener('click', () => {
-    fyrma.setAttribute('style', 'display: grid')
-    bytina.setAttribute('style', 'display: none')
-})
-
+}checkRead()
 
 function clearInputs() {
     const input = document.querySelectorAll('.input')
-    input.forEach((e) => {
+    input.forEach(e => {
         e.value = '';
     })
+    readButton.value = 'Read'
 }
 
+addBook.addEventListener('click', function() {
+    form.setAttribute('style', 'display: flex')
+})
+
+exit.addEventListener('click', () => {
+    form.setAttribute('style', 'display: none')
+})
