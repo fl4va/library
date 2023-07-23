@@ -2,6 +2,8 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
 }
 
 html, body{
@@ -23,11 +25,19 @@ html, body{
 
 .header{
     height: var(--header);
-    background-color: #eee;
+    background-color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 100px 10px 10px;
+}
+
+.header .logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: bold;
 }
 
 .header img{
@@ -37,15 +47,22 @@ html, body{
 
 .header button{
     height: 3rem;
-    width: 6rem;
-    
+    width: 8rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: white;
 }
 
+.header button:hover{
+    background-color: rgb(240, 239, 239);
+}
 
 .content{
     height: var(--content);
-    background-color: rgb(209, 219, 253);
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: #eee;
     font-size: 1.2rem;
     font-weight: bold;
     padding: 20px;
@@ -55,19 +72,22 @@ html, body{
     overflow: auto;
 }
 
-.exit{
+.exit, .exit img{
     position: absolute;
     content: '';
     width: 30px;
-    height: 24px;
-    background-color: rgb(255, 57, 31);
+    height: 30px;
+    background-color: white;
     top: 0px;
     right: 0px;
     border: none;
-    color: white;
+    padding: 5px;
+    /* color: white;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: bold; */
+    cursor: pointer;
 }
+
 
 .content form{
     position: absolute;
@@ -102,6 +122,11 @@ html, body{
     font-size: 20px;
 }
 
+.content input[type='button'] {
+    font-size: 1rem;
+    font-weight: bold;
+    
+}
 
 .content input[type='submit'] {
     background-color: rgb(47, 218, 84);
@@ -127,13 +152,17 @@ html, body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: rgb(8, 8, 185);
+    text-align: center;
+    
 }
 
 .main div button{
-    width: 100px;
-    height: 40px;
-    margin-top: 10px;
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 10px 0;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .footer {
@@ -142,6 +171,10 @@ html, body{
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    word-spacing: 2px;
+    letter-spacing: 1px;
     
 }
 

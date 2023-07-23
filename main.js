@@ -46,7 +46,7 @@ function addBookToLibrary (e) {
         }else {
             newButton.textContent = 'Not Read'
 
-            newButton.setAttribute('style', 'background: rgb(255, 57, 31)')    
+            newButton.setAttribute('style', 'background: rgb(255 97 76)')    
             return 
         }
     })
@@ -56,10 +56,10 @@ function addBookToLibrary (e) {
 
         // CREATE CARD FOR BOOK
         const div = document.createElement('div')
-        div.textContent = ` Title  :  ${tit}
-                            Author :  ${aut}
-                            Pages  :  ${pag}
-                            Rating :  ${rat} /10`
+        div.textContent = ` ${tit}
+                            ${aut}
+                            ${pag} pages
+                            ${rat} /10`
 
         // CREATE DELETE BUTTON
         const del = document.createElement('button')
@@ -74,6 +74,7 @@ function addBookToLibrary (e) {
         div.appendChild(del);
         main.appendChild(div);
     } else  alert('Please Fill Out The Form')
+    form.setAttribute('style', 'display: flex')
    clearInputs()
    form.setAttribute('style', 'display: none')
 }
@@ -96,10 +97,9 @@ function checkRead () {
                 return
             }else {
                 readButton.value= 'Not Read' 
-                readButton.setAttribute('style', 'background: rgb(255, 57, 31)')  
+                readButton.setAttribute('style', 'background: rgb(255 97 76)')  
                 return
             }
-
         })
 }checkRead()
 
