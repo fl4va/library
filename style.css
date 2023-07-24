@@ -125,7 +125,7 @@ html, body{
 .content input[type='button'] {
     font-size: 1rem;
     font-weight: bold;
-    
+    cursor: pointer;
 }
 
 .content input[type='submit'] {
@@ -133,6 +133,7 @@ html, body{
     font-size: 1rem;
     font-weight: bold;
     color: white;
+    cursor: pointer;
 }
 
 .main{
@@ -163,6 +164,7 @@ html, body{
     border: none;
     font-weight: bold;
     font-size: 16px;
+    cursor: pointer;
 }
 
 .footer {

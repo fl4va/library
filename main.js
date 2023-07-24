@@ -1,6 +1,6 @@
 const container = document.querySelector('.container')
 const main = document.querySelector('.main')
-const readButton = document.querySelector('.yes')
+const readButton = document.querySelector('#status')
 const addBook = document.querySelector('.addBook')
 const form = document.querySelector('.form')
 const exit = document.querySelector('.exit')
@@ -34,6 +34,13 @@ function addBookToLibrary (e) {
     const newButton = document.createElement('button')
     newButton.className = 'yes'
     newButton.textContent = readButton.value
+
+    if (readButton.classList.contains('yes')) {
+        newButton.setAttribute('style', 'background: rgb(47, 218, 84) ')
+        
+    } else {
+        newButton.setAttribute('style', 'background: rgb(255 97 76) ')
+    }
     newButton.addEventListener('click', () => {
         newButton.classList.toggle('yes')
         if (newButton.classList.contains('yes')) {
@@ -52,7 +59,7 @@ function addBookToLibrary (e) {
     })
 
     //CHECK IF INPUT EMPTY
-    if (tit !== '' && aut !== '' && pag !== '' ){
+    if (tit !== '' && aut !== '' && pag !== '' && rat <= 10){
 
         // CREATE CARD FOR BOOK
         const div = document.createElement('div')
@@ -73,17 +80,21 @@ function addBookToLibrary (e) {
         div.appendChild(newButton);
         div.appendChild(del);
         main.appendChild(div);
-    } else  alert('Please Fill Out The Form')
-    form.setAttribute('style', 'display: flex')
-   clearInputs()
-   form.setAttribute('style', 'display: none')
+
+        clearInputs()
+        form.setAttribute('style', 'display: none')
+        
+    } else {
+        alert('Please Fill Out The Form Correctly')
+        form.setAttribute('style', 'display: flex')
+    } 
+    
 }
 
-function subbmit() {
+function submit() {
     const sub = document.querySelector('#sub')
     sub.addEventListener('click', addBookToLibrary)
-    
-}subbmit()
+}submit()
 
 function checkRead () {
     
@@ -108,7 +119,8 @@ function clearInputs() {
     input.forEach(e => {
         e.value = '';
     })
-    readButton.value = 'Read'
+    readButton.value = 'Read?'
+    readButton.setAttribute('style', 'background: #f1f1f1')
 }
 
 addBook.addEventListener('click', function() {
@@ -117,4 +129,5 @@ addBook.addEventListener('click', function() {
 
 exit.addEventListener('click', () => {
     form.setAttribute('style', 'display: none')
+    clearInputs()
 })
